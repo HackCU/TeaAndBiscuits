@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="com.mkaoudis.pebble"
+    version="0.0.1">
+    <name>Pebble</name>
+    <description>Pebble Android Plugin - for TEA</description>
+    <!-- <license>Apache 2.0</license> -->
+    <keywords>pebble</keywords>
+    <repo>https://github.com/mkaoudis/cordova-pebble.git</repo>
+    <issue>https://github.com/mkaoudis/cordova-pebble/issues</issue>
+
+    <js-module src="www/pebble.js" name="pebble">
+    	<clobbers target="cordova.plugins.pebble" />
+    </js-module>
+
+     <!-- android -->
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="Pebble">
+        <param name="android-package" value="com.mkaoudis.pebble.Pebble" />
+      </feature>
+    </config-file>
+
+    <source-file src="src/android/Pebble.java" target-dir="src/com/mkaoudis/pebble" />
+    <source-file src="src/android/pebblekit-2.6.0-eclipse.jar" target-dir="libs" />
+  </platform>
+
+
+
+</plugin>
