@@ -134,3 +134,44 @@ h2 {
     background-color:#DAE0E0;
     border-radius:25px;
 }
+
+/* Select Pickup / Destination */
+.page-title{
+    margin: 10px auto 20px;
+    max-width:320px;
+    background-color: #AAA;
+    border-radius: 5px;
+    padding: 10px 20px;
+    box-shadow: 1px 1px 5px #000;
+}
+.page-title h1{
+    color: #fff;
+    margin-bottom: 5px;
+}
+.page-title h2{
+    color: #efefef;
+}
+
+.select-pickup{
+    width: 100%;
+}
+.select-pickup ul{
+    margin: 0px;
+    padding: 0px;
+}
+.select-pickup ul li {
+    list-style: none;
+    background-color: #efefef;
+    border-bottom: 1px solid #888;
+
+}
+.select-pickup ul li:first-child{
+    border-top: 1px solid #888;
+}
+.select-pickup a{
+    width:100%;
+    height:100%;
+    padding: 20px;
+    display:inline-block;
+    color: #5E5E8E;
+}
