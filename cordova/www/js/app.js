@@ -9,7 +9,7 @@
   * Transit application for predicting routes
   */
 
-angular.module('tea',[
+angular.module('teaApp',[
   'ngRoute'
   ])
 
