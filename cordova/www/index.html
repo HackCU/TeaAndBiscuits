@@ -19,23 +19,36 @@
 -->
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="main.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+        <title>Tea and Biscuits</title>
     </head>
     <body>
         <div class="app">
             <h1>Tea and Biscuits</h1>
             <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+                <p class="event listening">Routes loading...</p>
+                <p class="event received">Routes loaded!</p>
+            </div>
+            <script type="text/javascript" src="cordova.js"></script>
+            <script type="text/javascript" src="js/controller.js"></script>
+            <script type="text/javascript" src="js/models.js"></script>
+            <script type="text/javascript" src="js/views.js"></script>
+
+            <div class="list-group">
+                 <a href="route.html" class="list-group-item" id="route">Start with a route</li>
+                 <a href="muni.html" class="list-group-item" id="muni">Start in a municipality</li>
+                 <a href="end.html" class="list-group-item" id="end">Start with an endpoint</li>
+                 <a href="arr.html" class="list-group-item" id="arrival">Start with an arrival time</li>
+                 <a href="dep.html" class="list-group-item" id="departure">Start with a departure time</li>
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
     </body>
 </html>
