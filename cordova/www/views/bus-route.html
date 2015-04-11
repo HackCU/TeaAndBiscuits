@@ -1,40 +1,41 @@
-        <div class="app container-fluid">
-            <h1>TEA</h1>
-            <h2>transport expectation application</h2>
 
-            <div id="deviceready" class="blink">
-                <p class="event listening">Routes loading...</p>
-                <p class="event received">Select a route</p>
-            </div>
+<div class="app container-fluid">
+    <h1>TEA</h1>
+    <h2>transport expectation application</h2>
 
-            <form role="form">
-                <div class="form-group">
-                <label for="route">Route:</label>
-                    <select class="form-control" id="route">
-                        <option>--</option>
-                        <option>HOP</option>
-                        <option>SKIP</option>
-                        <option>JUMP</option>
-                        <option>BOUND</option>
-                        <option>AB</option>
-                        <option>BV/BX/BMX</option>
-                        <option>moar buses here</option>
-                    </select>
-                    <br>
-                <label for="direction">Direction:</label>
-                    <select class="form-control" id="direction">
-                        <option>--</option>
-                        <option>North</option>
-                        <option>South</option>
-                        <option>East</option>
-                        <option>West</option>
-                        <option>Northwest</option>
-                        <option>Northeast</option>
-                        <option>Southwest</option>
-                        <option>Southeast</option>
-                    </select>
-                    <br>
-                <button type="submit" value="continue" class="btn btn-success" id="submit" href="#/pick-time" ng-submit="submit()">continue...</button>
-                </div>
-            </form>
+
+    <div id="deviceready" class="blink">
+        <p class="event listening">Routes loading...</p>
+        <p class="event received">Select a route</p>
+    </div>
+
+    <form role="form">
+        <div class="form-group">
+        <label for="route">Route:</label>
+            <select class="form-control" id="route">
+                <option>--</option>
+                <option>HOP</option>
+                <option>SKIP</option>
+                <option>JUMP</option>
+                <option>BOUND</option>
+                <option>AB</option>
+                <option>BV/BX/BMX</option>
+                <option>moar buses here</option>
+            </select>
+            <br>
+        <label for="direction">Direction:</label>
+            <select class="form-control" id="direction">
+                <option>North</option>
+                <option>South</option>
+                <option>East</option>
+                <option>West</option>
+                <option>Northwest</option>
+                <option>Northeast</option>
+                <option>Southwest</option>
+                <option>Southeast</option>
+            </select>
+            <br>
+        <button type="submit" value="continue" class="btn btn-success" id="submit" href="#/pick-time" ng-click="busRouteSubmit()">continue...</button>
         </div>
+    </form>
+</div>
