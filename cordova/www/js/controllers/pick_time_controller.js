@@ -5,12 +5,11 @@ angular.module('teaApp')
     $scope.test = [
       'test list 1',
       'test list 2'
-    ],
+    ];
+
     $scope.submit = function () {
         //submit choices to db
 
         //route to next view
-
-        alert("Your route is set!");
     }
   });

@@ -1,9 +1,14 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('SelectDestinationController', function($scope){
+  .controller('SelectDestinationController', function($scope, Storage){
     $scope.test = [
       'test list 1',
       'test list 2'
-    ]
+    ];
+
+    $scope.submit = function() {
+        Storage.setRoute('test', 'testval');
+        alert("Your route is set!");
+    }
   });
