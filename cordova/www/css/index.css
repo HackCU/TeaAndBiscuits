@@ -54,7 +54,7 @@ body {
     height:50px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    padding:150px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
@@ -62,7 +62,7 @@ body {
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
-        background-position:left center;
+        background-position:center center;
         padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
         margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
@@ -70,12 +70,13 @@ body {
 }
 
 h1 {
-    font-size:36px;
+    font-size:24px;
     font-weight:normal;
+    font-family:Georgia;
     margin:0px;
     overflow:visible;
     padding:0px;
-    text-align:center;
+    text-align:right;
 }
 
 .event {
