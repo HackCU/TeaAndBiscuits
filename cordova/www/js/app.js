@@ -35,6 +35,9 @@ angular.module('teaApp',[
         templateUrl: 'views/select-destination.html',
         controller: 'SelectDestinationController'
       })
+      .when('/view-alerts',{
+        templateUrl: 'views/view-alerts.html'
+      })
       .when('/bus-arrive', {
         templateUrl: 'views/bus-arrive.html',
         controller: 'BusArriveController'

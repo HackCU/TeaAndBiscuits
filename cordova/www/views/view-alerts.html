@@ -1,0 +1,41 @@
+<div class="page-title">
+  <h1>My Alerts</h1>
+  <h2>Toggle your bus alerts.</h2>
+</div>
+<div>
+
+
+
+<div class="container alerts-page">
+  <ul class="route-alerts-list">
+    <li class="route-alert">
+      <div class="alert-title">
+        <div class="bus-stop">Table Mesa</div>
+        <div class="route">AB Eastbound @ <span class="route-time">12:00pm</span></div>
+      </div>
+      <div class="toggle-btn-grp joint-toggle clearfix">
+        <label class="toggle-btn"><input type="radio" name="alert1"/>on</label>
+        <label class="toggle-btn"><input type="radio" name="alert1"/>off</label>
+      </div>
+    </li>
+    <li class="route-alert">
+      <div class="alert-title">
+        <div class="bus-stop">Broadway PnR</div>
+        <div class="route">DASH Northbound @ <span class="route-time">5:00pm</span></div>
+      </div>
+      <div class="toggle-btn-grp joint-toggle clearfix">
+        <label class="toggle-btn"><input type="radio" name="alert2"/>on</label>
+        <label class="toggle-btn"><input type="radio" name="alert2"/>off</label>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<script>
+  $(".toggle-btn:not('.noscript') input[type=radio]").change( function(){
+    if ( $(this).attr('name') ){
+      $(this).parent().addClass("selected").siblings().removeClass("selected");
+    }
+  });
+
+</script>
