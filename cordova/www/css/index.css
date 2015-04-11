@@ -24,37 +24,30 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    background-color:#ffffff;
+    background-image:url('../img/tea.jpg');
+    background-position:top center;
+    background-attachment:scroll;
+    font-family:'Montserrat', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
+    text-transform:lowercase;
+    color:#5E5E8E;
     width:100%;
 }
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/tea.jpg) no-repeat center top; /* 170px x 200px */
+    /*background:url(../img/tea.jpg) no-repeat center top; 170px x 200px */
     position:absolute;             /* position in the center of the screen */
     left:50%;
-    top:50%;
+    top:30%;
     height:50px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;
-    padding:150px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    padding:10px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
     margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
@@ -62,21 +55,34 @@ body {
 /* Landscape layout (with min-width) */
 @media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
-        background-position:center center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        background-position:top center;
+        padding:5px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
         margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
                                       /* offset horizontal: half of image width and text area width */
     }
 }
 
 h1 {
-    font-size:24px;
-    font-weight:normal;
-    font-family:Georgia;
+    font-size:38px;
+    color:#555555;
+    font-style:bold;
+    font-family:'Montserrat',Helvetica,Arial,sans-serif;
     margin:0px;
     overflow:visible;
     padding:0px;
-    text-align:right;
+    text-align:center;
+    text-transform:none;
+}
+
+h2 {
+    font-size:12px;
+    color:#666666;
+    font-style:italic;
+    font-family:'Montserrat',Helvetica,Arial,sans-serif;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
 }
 
 .event {
@@ -113,4 +119,18 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.container-fluid {
+/*    background-color:#F4F9F6; */
+    position:absolute;             /* position in the center of the screen */
+    /*left:45%;
+    top:35%;*/
+    height:300px;                   /* text area height */
+    width:300px;                   /* text area width */
+    text-align:center;
+    padding:5px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:0px 0px 0px -150px;  /* offset vertical: half of image height and text area height */
+    background-color:#DAE0E0;
+    border-radius:25px;
 }
