@@ -24,24 +24,17 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
-    background-attachment:fixed;
+    background-color:#A4B2B2;
+    background-image:url('../img/tea.jpg');
+    background-position:top center;
+    background-attachment:scroll;
     font-family:'Montserrat', Helvetica, Arial, sans-serif;
     font-size:12px;
     height:100%;
     margin:0px;
     padding:0px;
-    text-transform:uppercase;
+    text-transform:lowercase;
+    color:#5E5E8E;
     width:100%;
 }
 
@@ -70,13 +63,26 @@ body {
 }
 
 h1 {
-    font-size:24px;
-    font-weight:normal;
+    font-size:38px;
+    color:#E1E1D3;
+    font-style:bold;
     font-family:'Montserrat',Helvetica,Arial,sans-serif;
     margin:0px;
     overflow:visible;
     padding:0px;
-    text-align:right;
+    text-align:center;
+    text-transform:none;
+}
+
+h2 {
+    font-size:12px;
+    color:#666666;
+    font-style:italic;
+    font-family:'Montserrat',Helvetica,Arial,sans-serif;
+    margin:0px;
+    overflow:visible;
+    padding:0px;
+    text-align:center;
 }
 
 .event {
@@ -113,4 +119,18 @@ h1 {
 .blink {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
+}
+
+.container-fluid {
+/*    background-color:#F4F9F6; */
+    position:absolute;             /* position in the center of the screen */
+    left:48%;
+    top:35%;
+    height:300px;                   /* text area height */
+    width:300px;                   /* text area width */
+    text-align:center;
+    padding:10px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+    background-color:#B6C1C1;
+    border-radius:25px;
 }
