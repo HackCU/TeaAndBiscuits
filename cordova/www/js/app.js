@@ -26,6 +26,12 @@ angular.module('teaApp',[
       .when('/pick-time', {
           templateUrl: 'views/pick-time.html'
         })
+      .when('/select-pickup',{
+        templateUrl: 'views/select-pickup.html'
+      })
+      .when('/select-destination',{
+        templateUrl: 'views/select-destination.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
