@@ -3,10 +3,18 @@ var app        = express();
 var bodyParser = require('body-parser');
 
 var mongoose   = require('mongoose');
-var mongoURI = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || "mongodb://localhost:27017/gtfsTest";
+var Schema = mongoose.Schema;
+var mongoURI = process.env.COMPOSE_URI || "mongodb://localhost:27017/gtfsTest"
 mongoose.connect(mongoURI);
 
-var Stop     = require('./app/models/stop');
+var Stop = require('./app/models/stop');
+Stop.findOne({}, function(err, stop) {
+  if (err) {
+    console.log(err);
+    throw err;
+  }
+  console.log(stop);
+})
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
