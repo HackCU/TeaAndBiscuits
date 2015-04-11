@@ -1,4 +1,4 @@
-<div class="app container-fluid">
+<div class="app container-fluid clearfix">
     <h1>TEA</h1>
     <h2>transport expectation application</h2>
     <script type="text/javascript" src="cordova.js"></script>
@@ -10,26 +10,8 @@
     <script type="text-javascript" src="js/controllers/select_destination_controller.js"></script>
     <script type="text-javascript" src="js/controllers/next_bus_controller.js"></script>
 
-    <div id="deviceready" class="blink">
-        <p class="event listening">Routes loading...</p>
-        <p class="event received">Select a route</p>
-    </div>
-
     <form role="form">
         <div class="form-group">
-        <label for="day">Today is...</label>
-            <select class="form-control" id="day">
-                <option>--</option>
-                <option>Sunday</option>
-                <option>Monday</option>
-                <option>Tuesday</option>
-                <option>Wednesday</option>
-                <option>Thursday</option>
-                <option>Friday</option>
-                <option>Saturday</option>
-                <option>Sunday</option>
-            </select>
-        <br>
         <label for="go">I want to...</label>
             <select class="form-control" id="go">
                 <option>--</option>
