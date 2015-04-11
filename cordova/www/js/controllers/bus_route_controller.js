@@ -2,14 +2,9 @@
 
 angular.module('teaApp')
   .controller('BusRouteController', function($scope){
-    $scope.test = [
-      'test list 1',
-      'test list 2'
-    ],
-    $scope.submit = function () {
-        //submit choices to db
+    $scope.test = "test";
 
-        //route to next view
-
+    $scope.submit = function() {
+          alert("yo");
     }
   });
