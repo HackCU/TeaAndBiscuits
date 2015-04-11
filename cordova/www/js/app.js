@@ -19,9 +19,13 @@ angular.module('teaApp',[
         templateUrl: 'views/main.html',
         controller: 'MainController'
       })
-      .when('/choose-route',{
-        templateUrl: 'views/routes.html'
+      .when('/bus-route',{
+        templateUrl: 'views/bus-route.html',
+        controller: 'BusRouteController'
       })
+      .when('/pick-time', {
+          templateUrl: 'views/pick-time.html'
+        })
       .when('/select-pickup',{
         templateUrl: 'views/select-pickup.html'
       })
@@ -30,6 +34,11 @@ angular.module('teaApp',[
       })
       .when('/view-alerts',{
         templateUrl: 'views/view-alerts.html'
+      .when('/bus-arrive', {
+        templateUrl: 'views/bus-arrive.html'
+      })
+      .when('/next-bus', {
+        templateUrl: 'views/next-bus.html'
       })
       .otherwise({
         redirectTo: '/'
