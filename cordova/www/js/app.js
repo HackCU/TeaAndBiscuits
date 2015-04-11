@@ -24,19 +24,24 @@ angular.module('teaApp',[
         controller: 'BusRouteController'
       })
       .when('/pick-time', {
-          templateUrl: 'views/pick-time.html'
+          templateUrl: 'views/pick-time.html',
+          controller: 'PickTimeController'
         })
       .when('/select-pickup',{
-        templateUrl: 'views/select-pickup.html'
+        templateUrl: 'views/select-pickup.html',
+        controller: 'SelectPickupController'
       })
       .when('/select-destination',{
-        templateUrl: 'views/select-destination.html'
+        templateUrl: 'views/select-destination.html',
+        controller: 'SelectDestinationController'
       })
       .when('/bus-arrive', {
-        templateUrl: 'views/bus-arrive.html'
+        templateUrl: 'views/bus-arrive.html',
+        controller: 'BusArriveController'
       })
       .when('/next-bus', {
-        templateUrl: 'views/next-bus.html'
+        templateUrl: 'views/next-bus.html',
+        controller: 'NextBusController'
       })
       .otherwise({
         redirectTo: '/'

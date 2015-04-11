@@ -1,9 +1,16 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('MainController', function($scope){
+  .controller('PickTimeController', function($scope){
     $scope.test = [
       'test list 1',
       'test list 2'
-    ]
+    ],
+    $scope.submit = function () {
+        //submit choices to db
+
+        //route to next view
+
+        alert("Your route is set!");
+    }
   });
