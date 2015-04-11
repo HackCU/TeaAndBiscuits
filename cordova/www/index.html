@@ -19,7 +19,6 @@
 -->
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="main.css">
         <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
@@ -30,27 +29,21 @@
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
         <title>Tea and Biscuits</title>
-    </head>
-    <body>
-        <div class="app container-fluid">
-            <h1>TEA</h1>
-            <h2>transport expectation application</h2>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Routes loading...</p>
-                <p class="event received">Select a route</p>
-            </div>
-            <script type="text/javascript" src="cordova.js"></script>
-            <script type="text/javascript" src="js/controller.js"></script>
-            <script type="text/javascript" src="js/models.js"></script>
-            <script type="text/javascript" src="js/views.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
 
-            <div class="list-group">
-                 <a href="route.html" class="list-group-item" id="route">Start with a route</a>
-                 <a href="muni.html" class="list-group-item" id="muni">Start in a municipality</a>
-                 <a href="end.html" class="list-group-item" id="end">Start with an endpoint</a>
-                 <a href="arr.html" class="list-group-item" id="arrival">Start with an arrival time</a>
-                 <a href="dep.html" class="list-group-item" id="departure">Start with a departure time</a>
-            </div>
+        <!-- Preload scripts -->
+        <script type="text/javascript" src="vendor/angular/angular.js"></script>
+        <script type="text/javascript" src="vendor/angular/angular-route.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/controllers/main_controller.js"></script>
+    </head>
+    <body ng-app="teaApp">
+        <div class="app container-fluid">
+            <div ng-view></div>
         </div>
+
+        <!-- before body end scripts -->
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/cordova_controller.js"></script>
     </body>
 </html>
