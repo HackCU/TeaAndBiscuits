@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('BusRouteController', function($scope, $window, Storage RouteApi){
+  .controller('BusRouteController', function($scope, $window, Storage, RouteApi){
     $scope.routes = RouteApi.fetch('route', {}).query();
 
     $scope.submit = function() {
