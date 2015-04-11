@@ -10,7 +10,8 @@
   */
 
 angular.module('teaApp',[
-  'ngRoute'
+  'ngRoute',
+  'ngTouch'
   ])
 
   .config( function($routeProvider) {

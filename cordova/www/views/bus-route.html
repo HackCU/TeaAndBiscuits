@@ -9,7 +9,7 @@
         <p class="event received">Select a route</p>
     </div>
 
-    <form role="form">
+    <form role="form" ng-action="alert('action!');">
         <div class="form-group">
         <label for="route">Route:</label>
             <select class="form-control" id="route">
@@ -33,7 +33,7 @@
                 <option>Southwest</option>
                 <option>Southeast</option>
             </select>
-        <button type="submit" value="continue" class="btn btn-success" id="submit" href="#/pick-time" ng-submit="busRouteSubmit()">continue...</button>
+        <button type="submit" value="continue" class="btn btn-success" id="submit" href="#/pick-time" ng-click="submit();">continue...</button>
         </div>
     </form>
 </div>
