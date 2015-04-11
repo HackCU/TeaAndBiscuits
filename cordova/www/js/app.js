@@ -32,6 +32,12 @@ angular.module('teaApp',[
       .when('/select-destination',{
         templateUrl: 'views/select-destination.html'
       })
+      .when('/bus-arrive', {
+        templateUrl: 'views/bus-arrive.html'
+      })
+      .when('/next-bus', {
+        templateUrl: 'views/next-bus.html'
+      })
       .otherwise({
         redirectTo: '/'
       });
