@@ -1,16 +1,18 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('PickTimeController', function($scope){
+  .controller('BusArriveController', function($scope, $window){
     $scope.test = [
       'test list 1',
       'test list 2'
-    ],
-    $scope.submit = function () {
-        //submit choices to db
-
-        //route to next view
-
+    ];
+    $scope.wait = function () {
+        $window.location.href = '#/next-bus';
+    };
+    $scope.here = function () {
         alert("Your bus is here!");
-    }
+    };
+    $scope.leave = function () {
+        alert("42!");
+    };
   });
