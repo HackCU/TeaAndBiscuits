@@ -24,7 +24,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#A4B2B2;
+    background-color:#ffffff;
     background-image:url('../img/tea.jpg');
     background-position:top center;
     background-attachment:scroll;
@@ -64,7 +64,7 @@ body {
 
 h1 {
     font-size:38px;
-    color:#E1E1D3;
+    color:#555555;
     font-style:bold;
     font-family:'Montserrat',Helvetica,Arial,sans-serif;
     margin:0px;
@@ -124,13 +124,13 @@ h2 {
 .container-fluid {
 /*    background-color:#F4F9F6; */
     position:absolute;             /* position in the center of the screen */
-    left:48%;
-    top:35%;
+    /*left:45%;
+    top:35%;*/
     height:300px;                   /* text area height */
     width:300px;                   /* text area width */
     text-align:center;
-    padding:10px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-    background-color:#B6C1C1;
+    padding:5px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
+    margin:0px 0px 0px -150px;  /* offset vertical: half of image height and text area height */
+    background-color:#DAE0E0;
     border-radius:25px;
 }
