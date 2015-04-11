@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('PickTimeController', function($scope){
+  .controller('PickTimeController', function($scope, $window, Storage){
     $scope.test = [
       'test list 1',
       'test list 2'
-    ],
+    ];
+
     $scope.submit = function () {
-        //submit choices to db
-
-        //route to next view
-
-        alert("Your route is set!");
+        Storage.setRoute('test', 'testval');
+        console.log(Storage.getRoute('test'));
+        $window.location.href = '#/select-pickup';
     }
+
   });

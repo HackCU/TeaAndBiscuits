@@ -56,13 +56,13 @@ ul li:first-child{
 .app {
     /*background:url(../img/tea.jpg) no-repeat center top; 170px x 200px */
     position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:30%;
+    left:40%;
+    top:20%;
     height:50px;                   /* text area height */
     width:225px;                   /* text area width */
     text-align:center;
     padding:10px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
+    margin:-120px 0px 0px -120px;  /* offset vertical: half of image height and text area height */
                                    /* offset horizontal: half of text area width */
 }
 
@@ -145,7 +145,7 @@ h2 {
     position:absolute;             /* position in the center of the screen */
     /*left:45%;
     top:35%;*/
-    height:370px;                   /* text area height */
+    height:500px;                   /* text area height */
     width:300px;                   /* text area width */
     text-align:center;
     padding:5px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
@@ -162,13 +162,6 @@ h2 {
     border-radius: 5px;
     padding: 10px 20px;
     box-shadow: 1px 1px 5px #000;
-}
-.page-title h1{
-    color: #fff;
-    margin-bottom: 5px;
-}
-.page-title h2{
-    color: #efefef;
 }
 
 .select-pickup{
