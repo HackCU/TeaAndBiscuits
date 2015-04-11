@@ -145,7 +145,7 @@ h2 {
     position:absolute;             /* position in the center of the screen */
     /*left:45%;
     top:35%;*/
-    height:370px;                   /* text area height */
+    height:500px;                   /* text area height */
     width:300px;                   /* text area width */
     text-align:center;
     padding:5px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
@@ -162,13 +162,6 @@ h2 {
     border-radius: 5px;
     padding: 10px 20px;
     box-shadow: 1px 1px 5px #000;
-}
-.page-title h1{
-    color: #fff;
-    margin-bottom: 5px;
-}
-.page-title h2{
-    color: #efefef;
 }
 
 .select-pickup{
