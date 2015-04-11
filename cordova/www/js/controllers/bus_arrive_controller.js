@@ -10,9 +10,9 @@ angular.module('teaApp')
         $window.location.href = '#/next-bus';
     };
     $scope.here = function () {
-        alert("Your bus is here!");
+        alert("42!");
     };
     $scope.leave = function () {
-        alert("42!");
+        alert("Thanks for choosing to enjoy your tea and biscuits!");
     };
   });
