@@ -28,6 +28,9 @@ angular.module('teaApp',[
       .when('/select-destination',{
         templateUrl: 'views/select-destination.html'
       })
+      .when('/view-alerts',{
+        templateUrl: 'views/view-alerts.html'
+      })
       .otherwise({
         redirectTo: '/'
       });

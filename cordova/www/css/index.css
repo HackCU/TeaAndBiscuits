@@ -38,6 +38,20 @@ body {
     width:100%;
 }
 
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+ul li {
+    list-style: none;
+    background-color: #efefef;
+    border-bottom: 1px solid #888;
+
+}
+ul li:first-child{
+    border-top: 1px solid #888;
+}
+
 /* Portrait layout (default) */
 .app {
     /*background:url(../img/tea.jpg) no-repeat center top; 170px x 200px */
@@ -155,19 +169,7 @@ h2 {
 .select-pickup{
     width: 100%;
 }
-.select-pickup ul{
-    margin: 0px;
-    padding: 0px;
-}
-.select-pickup ul li {
-    list-style: none;
-    background-color: #efefef;
-    border-bottom: 1px solid #888;
 
-}
-.select-pickup ul li:first-child{
-    border-top: 1px solid #888;
-}
 .select-pickup a{
     width:100%;
     height:100%;
@@ -175,3 +177,44 @@ h2 {
     display:inline-block;
     color: #5E5E8E;
 }
+
+
+
+/* View alert page */
+.toggle-btn-grp{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+.toggle-btn-grp .toggle-btn{
+    padding: 3px 10px;
+    color:#999;
+    border: 1px solid #888;
+    float: left;
+}
+.toggle-btn-grp .toggle-btn.selected{
+    background:green;
+    color: #fff;
+}
+.toggle-btn-grp .toggle-btn input[type="radio"] {
+  display: none;
+}
+.toggle-btn-grp .toggle-btn:first-child{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.toggle-btn-grp .toggle-btn:last-child{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: none;
+}
+
+.alerts-page{
+    text-transform: none;
+}
+
+.route-alert{
+    position: relative;
+    padding:20px;
+}
+
