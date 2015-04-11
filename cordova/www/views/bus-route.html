@@ -17,18 +17,17 @@
     specific language governing permissions and limitations
     under the License.
 -->
-<html>
+<html lang="en">
     <head>
-        <link rel="stylesheet" type="text/css" href="main.css">
+        <meta charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
         <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
-        <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
         <title>Tea and Biscuits</title>
     </head>
     <body>
@@ -45,13 +44,34 @@
                 <p class="event received">Select a route</p>
             </div>
 
-            <div class="list-group">
-                 <a href="" class="list-group-item" id="route">HOP</a>
-                 <a href="" class="list-group-item" id="muni">SKIP</a>
-                 <a href="" class="list-group-item" id="end">JUMP</a>
-                 <a href="" class="list-group-item" id="arrival">BX/BV/BMX</a>
-                 <a href="" class="list-group-item" id="departure">AB</a>
-            </div>
+            <form role="form">
+                <div class="form-group">
+                <label for="sel2">Route:</label>
+                    <select class="form-control" id="sel2">
+                        <option>--</option>
+                        <option>HOP</option>
+                        <option>SKIP</option>
+                        <option>JUMP</option>
+                        <option>BOUND</option>
+                        <option>AB</option>
+                        <option>BV/BX/BMX</option>
+                    </select>
+                <br>
+                <label for="direction">Direction:</label>
+                    <select class="form-control" id="direction">
+                        <option>North</option>
+                        <option>South</option>
+                        <option>East</option>
+                        <option>West</option>
+                        <option>Northwest</option>
+                        <option>Northeast</option>
+                        <option>Southwest</option>
+                        <option>Southeast</option>
+                    </select>
+                <br>
+                <button type="submit" value="continue" class="btn btn-success" id="submit">continue...</button>
+                </div>
+            </form>
         </div>
     </body>
 </html>
