@@ -1,0 +1,28 @@
+{
+  "name": "TeaAndBiscuits",
+  "version": "0.0.1",
+  "description": "Bus Tracker",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.12.2",
+    "express": "^4.12.3",
+    "lodash": "^3.6.0",
+    "mongodb": "^2.0.27",
+    "mongoose": "~3.6.13",
+    "q": "^1.2.0"
+  },
+  "scripts": {
+    "build": "npm install;webpack",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WadePeterson/koala-cam.git"
+  },
+  "author": "Wade Peterson and Garston Tremblay",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WadePeterson/koala-cam/issues"
+  },
+  "homepage": "https://github.com/WadePeterson/koala-cam"
+}
