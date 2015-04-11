@@ -19,9 +19,13 @@ angular.module('teaApp',[
         templateUrl: 'views/main.html',
         controller: 'MainController'
       })
-      .when('/choose-route',{
-        templateUrl: 'views/routes.html'
+      .when('/bus-route',{
+        templateUrl: 'views/bus-route.html',
+        controller: 'BusRouteController'
       })
+      .when('/pick-time', {
+          templateUrl: 'views/pick-time.html'
+        })
       .otherwise({
         redirectTo: '/'
       });
