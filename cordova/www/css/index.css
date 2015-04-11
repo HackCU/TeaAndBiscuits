@@ -85,6 +85,11 @@ h2 {
     text-align:center;
 }
 
+.bustimer {
+    font-size:96px;
+    color:#333333;
+}
+
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;
@@ -130,7 +135,7 @@ h2 {
     width:300px;                   /* text area width */
     text-align:center;
     padding:5px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:0px 0px 0px -150px;  /* offset vertical: half of image height and text area height */
+    margin:0px 0px 0px -118px;  /* offset vertical: half of image height and text area height */
     background-color:#DAE0E0;
     border-radius:25px;
 }
