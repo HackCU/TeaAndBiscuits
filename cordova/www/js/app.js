@@ -34,6 +34,7 @@ angular.module('teaApp',[
       })
       .when('/view-alerts',{
         templateUrl: 'views/view-alerts.html'
+      })
       .when('/bus-arrive', {
         templateUrl: 'views/bus-arrive.html'
       })
