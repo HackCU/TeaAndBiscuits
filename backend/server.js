@@ -65,7 +65,7 @@ router.route('/time/:trip/:stop/:hours/:minutes')
 
     var rows = activeRoutes[tripId];
 
-    var difference = rows[departingIndex].departure_time_seconds - departureSeconds;
+    var difference = departureSeconds - rows[departingIndex].departure_time_seconds;
 
     for(var i = departingIndex + 1; i < rows.length; i++) {
       var row = rows[i];
@@ -76,6 +76,8 @@ router.route('/time/:trip/:stop/:hours/:minutes')
       }
       else break;
     }
+
+    console.log("UPDATED:", rows);
 
     res.json("Updated!");
 
@@ -138,7 +140,8 @@ router.route('/stop/:route/:stop/:direction/:time')
 
         if (!activeRoutes[tripId]) {
           client.query("select departure_time_seconds, arrival_time_seconds, stop_id from gtfs_stop_times where trip_id='" + tripId + "' ORDER BY stop_sequence;", function(err, result) {
-            activeRoutes[tripId] = result.rows; 
+            activeRoutes[tripId] = result.rows;
+            console.log(activeRoutes);
             client.end();
           })
         }

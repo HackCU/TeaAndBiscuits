@@ -14,16 +14,16 @@ angular.module('teaApp')
             h = 12;
         }
 
-        if (min == 0) {
-            min = "00";
+        if (min < 10) {
+            min = "0" + min.toString();
         }
 
         return h+":"+min+" "+p;
     }
 
     for (var i = 0; i < 24; i++) {
-        for (var j = 0; j < 4; j++) {
-           $scope.times.push(convert2british(i,j*15));
+        for (var j = 0; j < 59; j++) {
+           $scope.times.push(convert2british(i,j));
         }
     }
 
