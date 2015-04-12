@@ -2,7 +2,6 @@
 
 angular.module('teaApp')
   .controller('NextBusController', function($scope, $window, $timeout, Storage){
-    var addTime = Storage.getRoute('wait');
 
     var onSuccess = function(p) {
         alert(p.timestamp);
@@ -16,15 +15,8 @@ angular.module('teaApp')
     navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:5000,enableHighAccuracy:true});
 
     $scope.seconds = "0" + 4;
-    $scope.mins = "0" + 1;
-    $scope.hours = 21;
-
-    if (addTime) {
-        $scope.mins = "0" + 2;
-        $scope.hours = "0";
-        Storage.removeRoute('wait');
-        alert('Added two more minutes to the timer. Be patient!');
-    }
+    $scope.mins = "0" + 0;
+    $scope.hours = 0;
 
     $scope.onTimeout = function(){
         $scope.seconds--;
@@ -32,8 +24,11 @@ angular.module('teaApp')
           $scope.seconds = "0" + $scope.seconds;
         }
         if ($scope.hours + $scope.mins + $scope.seconds == 0){
+          $scope.timerDone = true;
           return;
         }
+
+
         if ($scope.seconds == 0 && $scope.mins > 0 ){
           $scope.mins--;
           $scope.seconds = 59;
@@ -54,13 +49,21 @@ angular.module('teaApp')
     var mytimeout = $timeout($scope.onTimeout,1000);
 
     $scope.submit = function() {
-        $window.location.href = '#/bus-arrive';
+        alert("Excellent! Enjoy your ride, we'll let everyone know the bus is coming!")
+        $window.location.href = '#/';
     };
 
     $scope.pullUpdate = function() {
          if ($scope.route && $scope.direction && ($scope.pickup || $scope.destination)) {
             return RouteApi.fetch('update/stop/'+$scope.route+'/'+direction,{}).query();
         }
+    }
+    $scope.addTimeToCounter = function() {
+        $scope.seconds = "01";
+        $scope.mins = "0" + 2;
+        $scope.hours = "0";
+        alert('Added two more minutes to the timer. Be patient!');
+        $scope.onTimeout();
     }
 
   });
