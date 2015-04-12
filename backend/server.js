@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/gtfs';
 
+var waitingQueue = [];
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -24,22 +26,66 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
-router.route('update/stop/:route/:direction')
-    .get(function(req, res){
-        var route_id = req.params.route;
-        var query = ;
-    });
+function lightRailSafety(route_name) {
+
+  if (route_name.toLowerCase().match(/[cdefh] line/)) {
+    route_name = '101' + route_name[0].toUpperCase();
+  }
+  else if (route_name.toLowerCase() == "w line") {
+    route_name = '103W';
+  }
+
+  return route_name;
+
+}
+
+function getTimeString(time) {
+  //time in format "2:00 am"
+
+  var pm = time.slice(time.indexOf(" ") + 1, time.length) == "pm" ? true : false;
+  var hour = (parseInt(time.slice(0, time.indexOf(":"))) + (pm ? 12 : 0)).toString();
+  var minutes = time.slice(time.indexOf(":") + 1, time.indexOf(":") + 3);
+
+  return hour + ":" + minutes + ":00";
+}
+
+router.route('/stop/:route/:stop/:direction/:time')
+  .get(function(req, res) {
+
+    var routeId = lightRailSafety(req.params.route);
+    var stopName = req.params.stop;
+    var direction = parseInt(req.params.direction);
+    var time = getTimeString(req.params.time);
+
+    var query = 'SELECT gtfs_trips.trip_id, gtfs_stop_times.departure_time ' +
+    'FROM gtfs_trips ' +
+    'INNER JOIN gtfs_stop_times ON gtfs_stop_times.trip_id = gtfs_trips.trip_id ' +
+    'INNER JOIN gtfs_stops ON gtfs_stops.stop_id = gtfs_stop_times.stop_id ' +
+    "WHERE LOWER(route_id) = LOWER('" + routeId + "') AND service_id = 'WK' AND direction_id = " + direction + " AND LOWER(stop_name) = LOWER('"+ stopName + "') ORDER BY departure_time;"
+
+    pg.connect(conString, function(err, client) {
+      if (err) throw err;
+      client.query(query, function(err, result) {
+        client.end();
+        if (!result.rows) res.json([]);
+
+        var rows = result.rows;
+        var nextRow = _.find(rows, function(row) {
+          return row.departure_time > time;
+        }) || rows[0];
+
+        var data = nextRow.departure_time.split(':');
+
+        res.json({hours: data[0], minutes: data[1]});
+
+      })
+    })
+  })
+
 
 router.route('/stop/:route/:direction')
   .get(function(req, res) {
-    var route_id = req.params.route;
-
-    if (route_id.toLowerCase().match(/[cdefh] line/)) {
-      route_id = '101' + route_id[0].toUpperCase();
-    }
-    else if (route_id.toLowerCase() == "w line") {
-      route_id = '103W';
-    }
+    var route_id = lightRailSafety(req.params.route);
 
     var query = "SELECT stop_id, stop_name FROM gtfs_stops WHERE stop_id " +
     "IN (SELECT DISTINCT stop_id FROM gtfs_stop_times WHERE trip_id " +
