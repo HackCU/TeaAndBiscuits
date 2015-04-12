@@ -28,11 +28,16 @@ angular.module('teaApp')
     }
 
     $scope.submit = function () {
-        Storage.setRoute('selectedTime', $scope.times);
-        Storage.setRoute('go', $scope.go);
-        console.log(Storage.getRoute('time'));
-        console.log(Storage.getRoute('go'));
-        $window.location.href = '#/select-pickup';
+        if($scope.go && $scope.selectedTime){
+            Storage.setRoute('selectedTime', $scope.selectedTime);
+            Storage.setRoute('go', $scope.go);
+            console.log(Storage.getRoute('time'));
+            console.log(Storage.getRoute('go'));
+            $window.location.href = '#/select-pickup';
+        }
+        else{
+            alert("Please make a selection before continuing");
+        }
     }
 
   });

@@ -143,6 +143,10 @@ h2 {
 }
 
 /* Select Pickup / Destination */
+.stop-list{
+    text-transform: none;
+}
+
 .page-title{
     margin: 10px auto 20px;
     max-width:320px;

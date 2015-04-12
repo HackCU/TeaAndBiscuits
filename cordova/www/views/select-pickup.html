@@ -1,14 +1,7 @@
 <div class="app container-fluid">
   <h1>Pickup stop?</h1>
   <h2>Select your starting bus stop.</h2>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 1</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 2</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 3</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 4</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 5</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 6</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 7</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 8</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 9</a>
-    <a class="pickup list-group-item" href="#/select-destination">Bus 10</a>
+  <div class="stop-list">
+    <a ng-repeat="pickup in pickupStops" class="pickup list-group-item" ng-click="choosePickup(pickup.stop_id);">{{pickup.stop_name}}</a>
+  </div>
 </div>
