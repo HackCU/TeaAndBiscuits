@@ -18,7 +18,7 @@ angular.module('teaApp')
     $scope.onTimeout = function(){
         $scope.seconds--;
         if ($scope.seconds < 10){
-          $scope.seconds = "0" + $scope.seconds
+          $scope.seconds = "0" + $scope.seconds;
         }
         if ($scope.hours + $scope.mins + $scope.seconds == 0){
           return;
@@ -27,11 +27,10 @@ angular.module('teaApp')
           $scope.mins--;
           $scope.seconds = 59;
           if ($scope.mins < 10){
-          $scope.mins = "0" + $scope.mins
-        }
-          if (!(typeof cordova === 'undefined')){
-            console.log("yo");
-            cordova.plugins.pebble.alert("sender","title","body", null, null);
+            $scope.mins = "0" + $scope.mins;
+          }
+          if (!(typeof cordova === 'undefined') && $scope.hours == 0){
+            cordova.plugins.pebble.alert("sender","TEA - 1 min","Your bus should be arriving soon!", null, null);
           }
         }
         else if ($scope.seconds == 0 && $scope.mins == 0 && $scope.hours > 0){
