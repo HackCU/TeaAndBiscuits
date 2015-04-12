@@ -3,6 +3,7 @@
 angular.module('teaApp')
   .controller('NextBusController', function($scope, $window, $timeout){
     var onSuccess = function(p) {
+        alert("got geolocation!!!!!");
         return p.timestamp;
     };
 
