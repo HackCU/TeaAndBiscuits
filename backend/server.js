@@ -7,6 +7,8 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/gtfs';
 
+var waitingQueue = [];
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -24,6 +26,19 @@ router.get('/', function(req, res) {
     res.json({ message: 'hooray! welcome to our api!' });
 });
 
+function lightRailSafety(route_name) {
+
+  if (route_name.toLowerCase().match(/[cdefh] line/)) {
+    route_name = '101' + route_name[0].toUpperCase();
+  }
+  else if (route_name.toLowerCase() == "w line") {
+    route_name = '103W';
+  }
+
+  return route_name;
+
+}
+
 function getTimeString(time) {
   //time in format "2:00 am"
 
@@ -37,7 +52,7 @@ function getTimeString(time) {
 router.route('/stop/:route/:stop/:direction/:time')
   .get(function(req, res) {
 
-    var routeId = req.params.route;
+    var routeId = lightRailSafety(req.params.route);
     var stopName = req.params.stop;
     var direction = parseInt(req.params.direction);
     var time = getTimeString(req.params.time);
@@ -70,14 +85,7 @@ router.route('/stop/:route/:stop/:direction/:time')
 
 router.route('/stop/:route/:direction')
   .get(function(req, res) {
-    var route_id = req.params.route;
-
-    if (route_id.toLowerCase().match(/[cdefh] line/)) {
-      route_id = '101' + route_id[0].toUpperCase();
-    }
-    else if (route_id.toLowerCase() == "w line") {
-      route_id = '103W';
-    }
+    var route_id = lightRailSafety(req.params.route);
 
     var query = "SELECT stop_id, stop_name FROM gtfs_stops WHERE stop_id " +
     "IN (SELECT DISTINCT stop_id FROM gtfs_stop_times WHERE trip_id " +
