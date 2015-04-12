@@ -74,7 +74,7 @@ angular.module('teaApp')
 
     $scope.onTimeout = function(){
         $scope.counter++;
-        if (!($scope.counter % 10)){
+        if (!($scope.counter % 10) && ($scope.counter % 60)){
           updateTime();
         }
         $scope.seconds--;
