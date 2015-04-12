@@ -21,9 +21,15 @@ angular.module('teaApp')
         return h+":"+min+" "+p;
     }
 
+    var date = new Date();
+    var tempDate = angular.copy(date);
+
     for (var i = 0; i < 24; i++) {
+        tempDate.setHours(i);
         for (var j = 0; j < 59; j++) {
-           $scope.times.push(convert2british(i,j));
+            tempDate.setMinutes(j);
+            if (tempDate >= date)
+                $scope.times.push(convert2british(i,j));
         }
     }
 
