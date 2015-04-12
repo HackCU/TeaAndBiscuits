@@ -27,16 +27,24 @@ router.get('/', function(req, res) {
 
 router.route('/stop/:route/:direction')
   .get(function(req, res) {
+    var route_id = req.params.route;
+
+    if (route_id.toLowerCase().match(/[cdefh] line/)) {
+      route_id = '101' + route_id[0].toUpperCase();
+    }
+    else if (route_id.toLowerCase() == "w line") {
+      route_id = '103W';
+    }
+
     var query = "SELECT stop_id, stop_name FROM gtfs_stops WHERE stop_id " +
     "IN (SELECT DISTINCT stop_id FROM gtfs_stop_times WHERE trip_id " +
-    "IN ( SELECT trip_id FROM gtfs_trips WHERE route_id = '" + req.params.route.toUpperCase() + "' AND direction_id=" + req.params.direction.toString() +
+    "IN ( SELECT trip_id FROM gtfs_trips WHERE LOWER(route_id) = LOWER('" + route_id + "') AND direction_id=" + req.params.direction.toString() +
     "));"
 
     pg.connect(conString, function(err, client) {
       client.query(query, function(err, result) {
-        client.end();
-        console.log(query);
-        res.json(result.rows);
+        client.end();        
+        res.json(result ? result.rows : []);
       })
     })
   })
