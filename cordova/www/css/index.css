@@ -137,8 +137,8 @@ h2 {
     min-width:300px;                   /* text area width */
     text-align:center;
     padding:5px 5px 5px 5px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    background-color:#DAE0E0;
-    border-radius:25px;
+    background-color:#E1E6E6;
+    border-radius:15px;
     padding-bottom: 20px;
 }
 
