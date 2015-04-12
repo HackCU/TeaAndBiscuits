@@ -19,7 +19,7 @@ angular.module('teaApp')
 
     $scope.selectDestination = function(id) {
         Storage.setRoute('destination', id);
-        var timed = RouteApi.fetch('stop/'+route+'/'+go+'/'+pickup+'/'+$scope.destination+'/'+direction+'/'+time).query();
+        var timed = RouteApi.fetch('stop/'+route+'/'+go+'/'+pickup+'/'+id+'/'+direction+'/'+time).query();
         if (timed) {
             alert("Your route is set!");
             $window.location.href = '#/next-bus';
