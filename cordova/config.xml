@@ -10,4 +10,5 @@
     <content src="index.html" />
     <access origin="*" />
     <preference name="Orientation" value="portrait" />
+    <icon src="teacup.png" platform="android" width="57" height="57" density="mdpi" />
 </widget>
