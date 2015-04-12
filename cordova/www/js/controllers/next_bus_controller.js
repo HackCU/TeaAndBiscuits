@@ -20,10 +20,10 @@ angular.module('teaApp')
     $scope.hours = 21;
 
     if (addTime) {
-        alert('Added two more minutes to the timer. Be patient!');
         $scope.mins = "0" + 2;
         $scope.hours = "0";
         Storage.removeRoute('wait');
+        alert('Added two more minutes to the timer. Be patient!');
     }
 
     $scope.onTimeout = function(){
