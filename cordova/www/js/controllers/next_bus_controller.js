@@ -6,8 +6,6 @@ angular.module('teaApp')
     $scope.mins = "0" + 1;
     $scope.hours = 21;
 
-
-
     $scope.onTimeout = function(){
         $scope.seconds--;
         if ($scope.seconds < 10){
@@ -37,5 +35,19 @@ angular.module('teaApp')
 
     $scope.submit = function() {
         $window.location.href = '#/bus-arrive';
+    };
+
+    $scope.pushUpdate = function() {
+        var update = RouteApi.save();
+
+        return update;
+    };
+
+
+    $scope.pullUpdate = function() {
+         if ($scope.route && $scope.direction && ($scope.pickup || $scope.destination)) {
+            return RouteApi.fetch('update/stop/'+$scope.route+'/'+direction,{}).query();
+        }
     }
+
   });

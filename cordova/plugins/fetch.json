@@ -11,5 +11,12 @@
             "url": "https://github.com/mkaoudis/cordova-pebble.git",
             "subdir": "."
         }
+    },
+    "cordova-plugin-geolocation": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/apache/cordova-plugin-geolocation.git",
+            "subdir": "."
+        }
     }
 }
