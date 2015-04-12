@@ -90,8 +90,9 @@ angular.module('teaApp')
           if ($scope.mins == 1 && $scope.hours == 0) {
             if (!(typeof cordova === 'undefined')){
               cordova.plugins.pebble.alert("sender","TEA - Route Update", "The bus is one minute away!", null, null);
-              alert("The bus is one minute away!");
             }
+            alert("The bus is one minute away!");
+
           }
           $scope.mins--;
           $scope.seconds = 59;
