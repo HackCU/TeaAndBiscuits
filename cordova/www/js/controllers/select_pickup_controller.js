@@ -8,8 +8,8 @@ angular.module('teaApp')
 
     $scope.pickupStops = RouteApi.fetch('stop/'+route+'/'+direction, {}).query();
 
-    $scope.choosePickup = function(id){
-      Storage.setRoute('pickup', id);
+    $scope.choosePickup = function(id, name){
+      Storage.setRoute('pickup', name);
       var timed = RouteApi.fetch('stop/'+route+'/'+id+'/'+direction+'/'+time).query();
 
       if (timed) {

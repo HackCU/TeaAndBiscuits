@@ -2,7 +2,7 @@
   <h1>Pickup stop?</h1>
   <h2>Select your starting bus stop.</h2>
   <div class="stop-list">
-    <a ng-repeat="pickup in pickupStops" class="pickup list-group-item" ng-click="choosePickup(pickup.stop_id);">{{pickup.stop_name}}</a>
+    <a ng-repeat="pickup in pickupStops" class="pickup list-group-item" ng-click="choosePickup(pickup.stop_id, pickup.stop_name);">{{pickup.stop_name}}</a>
   </div>
 </div>
 
