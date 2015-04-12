@@ -2,10 +2,10 @@
 <widget id="com.teaandbiscuits" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>TEA</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        A real-time bus tracker that updates your wait time based on the wait times of those who have just gotten on the bus nearby.
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="kaoudis@colorado.edu" href="https://github.com/HackCU/TeaAndBiscuits">
+        Team Tea and Biscuits: Brandon Mikulka, Richard Green, Mike Kaoudis, Kelly Kaoudis
     </author>
     <content src="index.html" />
     <access origin="*" />
