@@ -88,7 +88,9 @@ angular.module('teaApp')
 
         if ($scope.seconds == 0 && $scope.mins > 0 ){
           if ($scope.mins == 1) {
-            cordova && cordova.plugins.pebble.alert("sender","TEA - Route Update", "The bus is one minute away!", null, null);
+            if (!(typeof cordova === 'undefined')){
+              cordova.plugins.pebble.alert("sender","TEA - Route Update", "The bus is one minute away!", null, null);
+            }
           }
           $scope.mins--;
           $scope.seconds = 59;
@@ -139,7 +141,9 @@ angular.module('teaApp')
           if (!(typeof cordova === 'undefined')){
               cordova.plugins.pebble.alert("sender","TEA - Route Update", message, null, null);
           }
+          calculateTimeToArrival($scope.currentTime);
           alert(message);
+
         }
       });
 
@@ -180,6 +184,7 @@ angular.module('teaApp')
         //navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:5000,enableHighAccuracy:true});
         ///time/:tripid/:stopid/:hours/:minutes
         var update = {};
+        console.log("sent time = "+ hours + ":" + minutes);
         update = RouteApi.fetch('time/'+$scope.tripId+'/'+$scope.stopId+'/'+hours+'/'+minutes).get();
         alert("Excellent! Enjoy your ride, we'll let everyone know the bus is coming!")
         $window.location.href = '#/';
