@@ -243,3 +243,9 @@ h2 {
     padding:20px;
 }
 
+.yes-no-btns button{
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 10px;
+}
