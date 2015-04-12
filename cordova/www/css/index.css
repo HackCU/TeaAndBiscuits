@@ -180,6 +180,7 @@ h2 {
     border-radius:15px;
     padding-bottom: 20px;
     margin-bottom:50px;
+    opacity: 0.75;
 }
 
 .breadcrumb {
