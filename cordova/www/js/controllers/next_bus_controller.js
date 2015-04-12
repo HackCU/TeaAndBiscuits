@@ -10,7 +10,7 @@ angular.module('teaApp')
         console.log('code '+err.code+'\n'+'message: '+err.message+'\n');
     };
 
-    $scope.currentTimestamp = navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    $scope.currentTimestamp = navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:5000,enableHighAccuracy:true});
     $scope.seconds = "0" + 4;
     $scope.mins = "0" + 1;
     $scope.hours = 21;
