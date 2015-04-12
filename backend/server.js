@@ -1,7 +1,7 @@
 var _ = require('lodash');
 
-var express    = require('express');        
-var app        = express();                 
+var express    = require('express');
+var app        = express();
 var bodyParser = require('body-parser');
 
 var pg = require('pg');
@@ -21,9 +21,14 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 router.get('/', function(req, res) {
-    res.json({ message: 'hooray! welcome to our api!' });   
+    res.json({ message: 'hooray! welcome to our api!' });
 });
 
+router.route('update/stop/:route/:direction')
+    .get(function(req, res){
+        var route_id = req.params.route;
+        var query = ;
+    });
 
 router.route('/stop/:route/:direction')
   .get(function(req, res) {
@@ -43,7 +48,7 @@ router.route('/stop/:route/:direction')
 
     pg.connect(conString, function(err, client) {
       client.query(query, function(err, result) {
-        client.end();        
+        client.end();
         res.json(result ? result.rows : []);
       })
     })
