@@ -31,6 +31,8 @@ body {
     background-color:#ffffff;
     background-image:url('../img/tea.jpg');
     background-position:top center;
+    background-repeat: no-repeat;
+    background-size: cover;
     background-attachment:scroll;
     font-family:'Oswald', sans-serif;
     font-size:18px;
