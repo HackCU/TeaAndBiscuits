@@ -37,6 +37,7 @@ angular.module('teaApp')
           'hours': $scope.timet.hours ,
           'minutes': $scope.timet.minutes
       }
+      $timeout($scope.onTimeout,1000);
     });
 
     var format = function(time){
@@ -99,13 +100,13 @@ angular.module('teaApp')
           $scope.seconds = 59;
         }
         if (isNextBus()){
-          mytimeout = $timeout($scope.onTimeout,1000);
+          $timeout($scope.onTimeout,1000);
         }
     }
 
     var updateTime = function(){
       // api call to get new time
-      var newTime = RouteApi.fetch('/time/'+$scope.tripId+'/'+$scope.stopId).get();
+      var newTime = RouteApi.fetch('time/'+$scope.tripId+'/'+$scope.stopId).get();
       // check time agains $scope.currentTime
       var timeChanged = false;
       newTime.$promise.then(function(){
@@ -131,32 +132,25 @@ angular.module('teaApp')
         }
       });
 
-      var isLate = function(oldTime, newTime){
-        var hoursdiff = oldTime.hours - newTime.hours;
-        if (hoursdiff < 0){
+    }
+
+    var isLate = function(oldTime, newTime){
+      var hoursdiff = oldTime.hours - newTime.hours;
+      if (hoursdiff < 0){
+        return false;
+      }
+      else if (hoursdiff > 0){
+        return true;
+      }
+      else{
+        var mindiff = oldTime.minutes - newTime.minutes;
+        if (mindiff < 0){
           return false;
         }
-        else if (hours > 0){
+        else{
           return true;
         }
-
-        else{
-          var mindiff = oldTime.minutes - newTime.minutes;
-          if (mindiff < 0){
-            return false;
-          }
-          else{
-            return true;
-          }
-        }
       }
-
-
-
-      // if different, send pebble notification and update time and notification.
-
-
-      mytimeout = $timeout(updateTime,30000);
     }
 
     $scope.addTimeToCounter = function() {
@@ -197,5 +191,5 @@ angular.module('teaApp')
         return h+":"+min+" "+p;
     }
 
-    var mytimeout = $timeout($scope.onTimeout,1000);
+
   });
