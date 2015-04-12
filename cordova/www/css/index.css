@@ -142,6 +142,16 @@ h2 {
     padding-bottom: 20px;
 }
 
+.breadcrumb {
+    text-align:center;
+    padding:5px 5px 5px 5px;
+    background-color:#e1e6e6;
+}
+
+.corners {
+    border-radius:0px;
+}
+
 /* Select Pickup / Destination */
 .stop-list{
     text-transform: none;
