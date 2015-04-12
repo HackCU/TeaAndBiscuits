@@ -70,11 +70,11 @@ router.route('/time/:trip/:stop/:hours/:minutes')
     for(var i = departingIndex + 1; i < rows.length; i++) {
       var row = rows[i];
       row.arrival_time_seconds += difference;
-      if (row.arrival_time_seconds > row.departure_time_seconds) {
-        difference = row.arrival_time_seconds - row.departure_time_seconds;
-        row.departure_time_seconds += difference;
-      }
-      else break;
+      // if (row.arrival_time_seconds > row.departure_time_seconds) {
+      //   difference = row.arrival_time_seconds - row.departure_time_seconds;
+      //   row.departure_time_seconds += difference;
+      // }
+      //else break;
     }
 
     res.json("Updated!");
@@ -94,7 +94,7 @@ router.route('/time/:trip/:stop')
 
     if (!correctRow) res.json([]);
     else {
-      var seconds = correctRow.departure_time_seconds;
+      var seconds = correctRow.arrival_time_seconds;
 
       var hours = Math.floor(seconds / 3600)
       var minutes = Math.floor(60*((seconds / 3600) - hours))
@@ -112,11 +112,11 @@ router.route('/stop/:route/:stop/:direction/:time')
     var direction = parseInt(req.params.direction);
     var time = getTimeString(req.params.time);
 
-    var query = 'SELECT gtfs_trips.trip_id, gtfs_stop_times.departure_time, gtfs_stop_times.stop_id ' +
+    var query = 'SELECT gtfs_trips.trip_id, gtfs_stop_times.arrival_time, gtfs_stop_times.stop_id ' +
     'FROM gtfs_trips ' +
     'INNER JOIN gtfs_stop_times ON gtfs_stop_times.trip_id = gtfs_trips.trip_id ' +
     'INNER JOIN gtfs_stops ON gtfs_stops.stop_id = gtfs_stop_times.stop_id ' +
-    "WHERE LOWER(route_id) = LOWER('" + routeId + "') AND (service_id = 'WK' OR service_id = 'MT' OR service_id = 'FR') AND direction_id = " + direction + " AND LOWER(stop_name) = LOWER('"+ stopName + "') ORDER BY departure_time;"
+    "WHERE LOWER(route_id) = LOWER('" + routeId + "') AND (service_id = 'WK' OR service_id = 'MT' OR service_id = 'FR') AND direction_id = " + direction + " AND LOWER(stop_name) = LOWER('"+ stopName + "') ORDER BY arrival_time;"
 
     pg.connect(conString, function(err, client) {
       if (err) throw err;
@@ -128,10 +128,10 @@ router.route('/stop/:route/:stop/:direction/:time')
 
         var rows = result.rows;
         var nextRow = _.find(rows, function(row) {
-          return row.departure_time > time;
+          return row.arrival_time > time;
         }) || rows[0];
 
-        var data = nextRow.departure_time.split(':');
+        var data = nextRow.arrival_time.split(':');
         var tripId = nextRow.trip_id;
 
         res.json({hours: data[0], minutes: data[1], tripId: tripId, stopId: nextRow.stop_id});
