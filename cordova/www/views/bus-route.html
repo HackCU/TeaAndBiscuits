@@ -2,7 +2,8 @@
 <div class="app container-fluid">
     <h1>TEA</h1>
     <h2>transport expectation application</h2>
-
+    <br>
+    <br>
     <form role="form">
         <div class="form-group">
         <label for="route">Route:</label>
@@ -10,9 +11,11 @@
                 <option value="">-- choose route --</option>
             </select>
             <br>
+            <br>
         <label for="direction">Direction:</label>
             <select class="form-control" id="direction" ng-options="direction for direction in myRoute.directions" ng-model="myDirection">
             </select>
+            <br>
             <br>
         <button type="submit" class="btn btn-success" id="submit" ng-click="submit()">continue...</button>
         </div>
@@ -20,7 +23,7 @@
 </div>
 
 <nav class="nav navbar-default navbar-fixed-bottom">
-    <div class="container-fluid corners">
+    <div class="container corners">
         <o1 class="breadcrumb">
             <li><a href="#/">home</a></li>
             <li class="active"><a href="#/bus-route">route</a></li>

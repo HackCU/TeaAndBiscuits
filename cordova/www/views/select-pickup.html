@@ -1,13 +1,13 @@
 <div class="app container-fluid">
-  <h1>Pickup stop?</h1>
-  <h2>Select your starting bus stop.</h2>
+  <h1>Pick-up?</h1>
+  <h2>Select starting bus stop</h2>
   <div class="stop-list">
     <a ng-repeat="pickup in pickupStops" class="pickup list-group-item" ng-click="choosePickup(pickup.stop_id, pickup.stop_name);">{{pickup.stop_name}}</a>
   </div>
 </div>
 
 <nav class="nav navbar-default navbar-fixed-bottom">
-    <div class="container-fluid corners">
+    <div class="container corners">
         <o1 class="breadcrumb">
             <li><a href="#/">home</a></li>
             <li><a href="#/bus-route">route</a></li>

@@ -9,11 +9,13 @@
     <script type="text-javascript" src="js/controllers/select_pickup_controller.js"></script>
     <script type="text-javascript" src="js/controllers/select_destination_controller.js"></script>
     <script type="text-javascript" src="js/controllers/next_bus_controller.js"></script>
-
+    <br>
+    <br>
     <form role="form">
         <div class="form-group">
         <label for="time">I want to leave at (time):</label>
             <select ng-model="selectedTime" ng-options="t for t in times" class="form-control" id="time"></select>
+        <br>
         <br>
         <button type="submit" class="btn btn-success" id="submit" ng-click="submit()" href="#/next-bus">continue...</button>
         </div>
@@ -21,7 +23,7 @@
 </div>
 
 <nav class="nav navbar-default navbar-fixed-bottom">
-    <div class="container-fluid corners">
+    <div class="container corners">
         <o1 class="breadcrumb">
             <li><a href="#/">home</a></li>
             <li><a href="#/bus-route">route</a></li>
