@@ -1,19 +1,23 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('SelectDestinationController', function($scope, Storage, RouteApi){
+  .controller('SelectDestinationController', function($scope, $window, Storage, RouteApi){
     var route = Storage.getRoute('route');
     var direction = Storage.getRoute('direction');
     var pickup = Storage.getRoute('pickup');
 
     $scope.destinationStops = RouteApi.fetch('stop/'+route+'/'+direction, {}).query();
-    $scope.current = '';
+    var current = '';
 
-    console.log($scope.destinationStops);
+    $scope.destinationStops.$promise.then( function(){
+      while(current.stop_id != pickup){
+        current = $scope.destinationStops.shift();
+      }
+    });
 
-
-    $scope.selectDestination = function() {
-        Storage.setRoute('test', 'testval');
+    $scope.selectDestination = function(id) {
+        Storage.setRoute('destination', id);
         alert("Your route is set!");
+        $window.location.href = '#/next-bus';
     }
   });
