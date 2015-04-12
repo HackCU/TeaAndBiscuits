@@ -110,13 +110,21 @@ angular.module('teaApp')
       // check time agains $scope.currentTime
       var timeChanged = false;
       newTime.$promise.then(function(){
+
+        console.log("new time = "+ newTime.hours + ":" + newTime.minutes);
+        console.log("current time = "+ $scope.currentTime.hours + ":" + $scope.currentTime.minutes);
+
         if (newTime.hours != $scope.currentTime.hours){
           timeChanged = true;
         }
         else if (newTime.minutes != $scope.currentTime.minutes){
-          timeChanged = true;
+          mindiff = Math.abs($scope.currentTime.minutes - newTime.minutes);
+          if (mindiff > 1  && mindiff != 59){
+            timeChanged = true;
+          }
         }
         if (timeChanged){
+          console.log('time changed!')
           var message = '';
           if (isLate($scope.currentTime, newTime)){
             message = "The bus is late. The current arrival time is now " + convert2british(newTime.hours, newTime.minutes);
