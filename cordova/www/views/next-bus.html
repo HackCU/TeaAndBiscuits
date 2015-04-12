@@ -9,12 +9,12 @@
 
     <div ng-show="!timerDone">
         <br/>
-        <button type="button" class="btn btn-success" id="bus-early" ng-click="submit()">The bus is here early!</button>
+        <button type="button" class="btn btn-success" id="bus-early" ng-click="here()">The bus is here early!</button>
     </div>
 
     <div class="yes-no-btns" ng-show="timerDone">
         <h1>Is the bus here?</h2>
-        <button type="button" class="btn btn-success" id="bus-early" ng-click="submit()">Yes</button>
+        <button type="button" class="btn btn-success" id="bus-early" ng-click="here()">Yes</button>
         <br/>
         <button type="button" class="btn btn-danger" id="bus-early" ng-click="addTimeToCounter()">No</button>
     </div>

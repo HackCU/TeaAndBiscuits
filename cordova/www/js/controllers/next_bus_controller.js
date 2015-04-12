@@ -1,13 +1,17 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('NextBusController', function($scope, $window, $timeout, Storage, RouteApi){
+  .controller('NextBusController', function($scope, $window, $timeout, $location, Storage, RouteApi){
 
     var route = Storage.getRoute('route');
     var direction = Storage.getRoute('direction');
     var time = Storage.getRoute('selectedTime');
     var pickup = Storage.getRoute('pickup');
+    $scope.counter = 0;
 
+    var isNextBus = function(){
+      return ($location.path() == '/next-bus');
+    }
 
     // Ajax Success/ Errors
     var onSuccess = function(p) {
@@ -26,7 +30,13 @@ angular.module('teaApp')
     $scope.timePromise.$promise.then(function(){
       $scope.timet.hours = $scope.timePromise.hours;
       $scope.timet.minutes = $scope.timePromise.minutes;
+      $scope.tripId = $scope.timePromise.tripId;
+      $scope.stopId = $scope.timePromise.stopId;
       calculateTimeToArrival($scope.timet);
+      $scope.currentTime = {
+          'hours': $scope.timet.hours ,
+          'minutes': $scope.timet.minutes
+      }
     });
 
     var format = function(time){
@@ -57,16 +67,15 @@ angular.module('teaApp')
       $scope.hours = format(outputHour);
     }
 
-
-
-
     //Start logic for timer
-
-
 
     $scope.seconds = "0" + 1;
 
     $scope.onTimeout = function(){
+        $scope.counter++;
+        if (!($scope.counter % 10)){
+          updateTime();
+        }
         $scope.seconds--;
         if ($scope.seconds < 10){
           $scope.seconds = "0" + $scope.seconds;
@@ -76,46 +85,116 @@ angular.module('teaApp')
           return;
         }
 
-
         if ($scope.seconds == 0 && $scope.mins > 0 ){
           $scope.mins--;
           $scope.seconds = 59;
           if ($scope.mins < 10){
             $scope.mins = "0" + $scope.mins;
           }
-          if (!(typeof cordova === 'undefined') && $scope.hours == 0){
-            cordova.plugins.pebble.alert("sender","TEA - 1 min","Your bus should be arriving soon!", null, null);
-          }
+
         }
         else if ($scope.seconds == 0 && $scope.mins == 0 && $scope.hours > 0){
           $scope.hours--;
           $scope.mins = 59;
           $scope.seconds = 59;
         }
-        mytimeout = $timeout($scope.onTimeout,1000);
+        if (isNextBus()){
+          mytimeout = $timeout($scope.onTimeout,1000);
+        }
     }
 
     var updateTime = function(){
-      calculateTimeToArrival($scope.timet);
+      // api call to get new time
+      var newTime = RouteApi.fetch('/time/'+$scope.tripId+'/'+$scope.stopId).get();
+      // check time agains $scope.currentTime
+      var timeChanged = false;
+      newTime.$promise.then(function(){
+        if (newTime.hours != $scope.currentTime.hours){
+          timeChanged = true;
+        }
+        else if (newTime.minutes != $scope.currentTime.minutes){
+          timeChanged = true;
+        }
+        if (timeChanged){
+          var message = '';
+          if (isLate($scope.currentTime, newTime)){
+            message = "The bus is late. The current arrival time is now " + convert2british(newTime.hours, newTime.minutes);
+          }
+          else{
+            message = "The bus is early. The current arrival time is now " + convert2british(newTime.hours, newTime.minutes);
+          }
+          $scope.currentTime = newTime;
+          if (!(typeof cordova === 'undefined')){
+              cordova.plugins.pebble.alert("sender","TEA - Route Update", message, null, null);
+          }
+          alert(message);
+        }
+      });
+
+      var isLate = function(oldTime, newTime){
+        var hoursdiff = oldTime.hours - newTime.hours;
+        if (hoursdiff < 0){
+          return false;
+        }
+        else if (hours > 0){
+          return true;
+        }
+
+        else{
+          var mindiff = oldTime.minutes - newTime.minutes;
+          if (mindiff < 0){
+            return false;
+          }
+          else{
+            return true;
+          }
+        }
+      }
+
+
+
+      // if different, send pebble notification and update time and notification.
+
+
       mytimeout = $timeout(updateTime,30000);
     }
 
-    $scope.submit = function() {
-        alert("Excellent! Enjoy your ride, we'll let everyone know the bus is coming!")
-        $window.location.href = '#/';
-    };
-
-    // $scope.pullUpdate = function() {
-    //      if ($scope.route && $scope.direction && ($scope.pickup || $scope.destination)) {
-    //         return RouteApi.fetch('update/stop/'+$scope.route+'/'+direction,{}).query();
-    //     }
-    // }
     $scope.addTimeToCounter = function() {
         $scope.seconds = "01";
         $scope.mins = "0" + 2;
         $scope.hours = "0";
+        $scope.timerDone = false;
         alert('Added two more minutes to the timer. Be patient!');
         $scope.onTimeout();
+    }
+
+    $scope.here = function () {
+        var date = new Date;
+        var minutes = date.getMinutes();
+        var hours = date.getHours();
+        //navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:5000,enableHighAccuracy:true});
+        ///time/:tripid/:stopid/:hours/:minutes
+        var update = {};
+        update = RouteApi.fetch('time/'+$scope.tripId+'/'+$scope.stopId+'/'+hours+'/'+minutes).get();
+        alert("Excellent! Enjoy your ride, we'll let everyone know the bus is coming!")
+        $window.location.href = '#/';
+    }
+
+    var convert2british = function (hr, min) {
+        var p = "am", h = hr;
+
+        if (hr > 12) {
+            h = hr - 12;
+            p = "pm";
+        } else if (h < 1) {
+            h = 12;
+        }
+
+        if (min < 10) {
+            min = "0" + min.toString();
+        }
+
+        return h+":"+min+" "+p;
     }
 
     var mytimeout = $timeout($scope.onTimeout,1000);
