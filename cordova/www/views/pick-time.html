@@ -12,13 +12,7 @@
 
     <form role="form">
         <div class="form-group">
-        <label for="go">I want to...</label>
-            <select ng-model="go" class="form-control" id="go">
-                <option>Leave at</option>
-                <option>Arrive at</option>
-            </select>
-        <br>
-        <label for="time">Time:</label>
+        <label for="time">I want to leave at (time):</label>
             <select ng-model="selectedTime" ng-options="t for t in times" class="form-control" id="time"></select>
         <br>
         <button type="submit" class="btn btn-success" id="submit" ng-click="submit()" href="#/next-bus">continue...</button>

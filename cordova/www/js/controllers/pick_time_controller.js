@@ -30,7 +30,7 @@ angular.module('teaApp')
     $scope.submit = function () {
         if($scope.go && $scope.selectedTime){
             Storage.setRoute('selectedTime', $scope.selectedTime);
-            Storage.setRoute('go', $scope.go);
+           // Storage.setRoute('go', $scope.go);
 
   //          console.log(Storage.getRoute('time'));
   //          console.log(Storage.getRoute('go'));
