@@ -2,7 +2,6 @@
     <h1>TEA</h1>
     <h2>transport expectation application</h2>
     <br>
-
     <div class="blink bustimer">
         {{hours}}:{{mins}}:{{seconds}}
     </div>
@@ -11,7 +10,8 @@
         <br/>
         <button type="button" class="btn btn-success" id="bus-early" ng-click="here()">The bus is here early!</button>
     </div>
-
+    <br>
+    <br>
     <div class="yes-no-btns" ng-show="timerDone">
         <h1>Is the bus here?</h2>
         <button type="button" class="btn btn-success" id="bus-early" ng-click="here()">Yes</button>
@@ -21,13 +21,13 @@
 </div>
 
 <nav class="nav navbar-default navbar-fixed-bottom">
-    <div class="container-fluid corners">
+    <div class="container corners">
         <o1 class="breadcrumb">
             <li><a href="#/">home</a></li>
             <li><a href="#/bus-route">route</a></li>
             <li><a href="#/pick-time">time</a></li>
             <li><a href="#/select-pickup">start</a></li>
-            <li class="active"><a href="#/next-bus">waiting for the british...</a></li>
+            <li class="active"><a href="#/next-bus">the british are coming!</a></li>
         </o1>
     </div>
 </nav>
