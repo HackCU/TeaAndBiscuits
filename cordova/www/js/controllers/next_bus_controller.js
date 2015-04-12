@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('NextBusController', function($scope, $window, $timeout){
+  .controller('NextBusController', function($scope, $window, $timeout, Storage){
+    var addTime = Storage.getRoute('wait');
+
     var onSuccess = function(p) {
         alert(p.timestamp);
         $scope.now = p.timestamp;
@@ -16,6 +18,13 @@ angular.module('teaApp')
     $scope.seconds = "0" + 4;
     $scope.mins = "0" + 1;
     $scope.hours = 21;
+
+    if (addTime) {
+        alert('Added two more minutes to the timer. Be patient!');
+        $scope.mins = "0" + 2;
+        $scope.hours = "0";
+        Storage.removeRoute('wait');
+    }
 
     $scope.onTimeout = function(){
         $scope.seconds--;

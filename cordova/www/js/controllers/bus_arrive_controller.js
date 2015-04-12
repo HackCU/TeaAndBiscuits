@@ -23,7 +23,7 @@ angular.module('teaApp')
             update = RouteApi.fetch('stop/'+$scope.route+'/'+$scope.direction+'/'+$scope.pickup+'/wait/'+$scope.now).save();
             //posting
         }
-
+         Storage.setRoute('wait', true);
         $window.location.href = '#/next-bus';
     };
     $scope.here = function () {
