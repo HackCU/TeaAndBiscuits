@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 var pg = require('pg');
 var conString = process.env.DATABASE_URL || 'postgres://localhost:5432/gtfs';
 
-var waitingQueue = [];
+var activeRoutes = {};
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -40,14 +40,69 @@ function lightRailSafety(route_name) {
 }
 
 function getTimeString(time) {
-  //time in format "2:00 am"
+  //time in format "02:00 am"
 
   var pm = time.slice(time.indexOf(" ") + 1, time.length) == "pm" ? true : false;
-  var hour = (parseInt(time.slice(0, time.indexOf(":"))) + (pm ? 12 : 0)).toString();
+
+  var hour = parseInt(time.slice(0, time.indexOf(":"))) + (pm ? 12 : 0)
+  hour = hour < 10 ? "0" + hour.toString() : hour.toString();
+
   var minutes = time.slice(time.indexOf(":") + 1, time.indexOf(":") + 3);
 
   return hour + ":" + minutes + ":00";
 }
+
+router.route('/time/:trip/:stop/:hours/:minutes')
+  .get(function(req, res) {
+    var tripId = req.params.trip;
+    var stopId = req.params.stop;
+
+    var departureSeconds = req.params.hours * 3600 + req.params.minutes * 60;
+
+    var departingIndex = _.findIndex(activeRoutes[tripId], function(row) {
+      return row.stop_id === stopId;
+    });
+
+    var rows = activeRoutes[tripId];
+
+    var difference = rows[departingIndex].departure_time_seconds - departureSeconds;
+
+    for(var i = departingIndex + 1; i < rows.length; i++) {
+      var row = rows[i];
+      row.arrival_time_seconds += difference;
+      if (row.arrival_time_seconds > row.departure_time_seconds) {
+        difference = row.arrival_time_seconds - row.departure_time_seconds;
+        row.departure_time_seconds += difference;
+      }
+      else break;
+    }
+
+    res.json("Updated!");
+
+  });
+
+//polling one
+router.route('/time/:trip/:stop')
+  .get(function(req, res) {
+    var tripId = req.params.trip;
+    var stopId = req.params.stop;
+    var timestamp = req.params.time;
+
+    var correctRow = _.find(activeRoutes[tripId], function(row) {
+      return row.stop_id === stopId;
+    })
+
+    if (!correctRow) res.json([]);
+    else {
+      var seconds = correctRow.departure_time_seconds;
+
+      var hours = Math.floor(seconds / 3600)
+      var minutes = Math.floor(60*((seconds / 3600) - hours))
+
+      res.json({hours: hours, minutes: minutes});
+    }
+
+  })
 
 router.route('/stop/:route/:stop/:direction/:time')
   .get(function(req, res) {
@@ -57,17 +112,19 @@ router.route('/stop/:route/:stop/:direction/:time')
     var direction = parseInt(req.params.direction);
     var time = getTimeString(req.params.time);
 
-    var query = 'SELECT gtfs_trips.trip_id, gtfs_stop_times.departure_time ' +
+    var query = 'SELECT gtfs_trips.trip_id, gtfs_stop_times.departure_time, gtfs_stop_times.stop_id ' +
     'FROM gtfs_trips ' +
     'INNER JOIN gtfs_stop_times ON gtfs_stop_times.trip_id = gtfs_trips.trip_id ' +
     'INNER JOIN gtfs_stops ON gtfs_stops.stop_id = gtfs_stop_times.stop_id ' +
-    "WHERE LOWER(route_id) = LOWER('" + routeId + "') AND service_id = 'WK' AND direction_id = " + direction + " AND LOWER(stop_name) = LOWER('"+ stopName + "') ORDER BY departure_time;"
+    "WHERE LOWER(route_id) = LOWER('" + routeId + "') AND (service_id = 'WK' OR service_id = 'MT' OR service_id = 'FR') AND direction_id = " + direction + " AND LOWER(stop_name) = LOWER('"+ stopName + "') ORDER BY departure_time;"
 
     pg.connect(conString, function(err, client) {
       if (err) throw err;
       client.query(query, function(err, result) {
-        client.end();
-        if (!result.rows) res.json([]);
+        if (!result.rows || !result.rows.length) {
+          res.json([]);
+          return;
+        }
 
         var rows = result.rows;
         var nextRow = _.find(rows, function(row) {
@@ -75,9 +132,19 @@ router.route('/stop/:route/:stop/:direction/:time')
         }) || rows[0];
 
         var data = nextRow.departure_time.split(':');
+        var tripId = nextRow.trip_id;
 
-        res.json({hours: data[0], minutes: data[1]});
+        res.json({hours: data[0], minutes: data[1], tripId: tripId, stopId: nextRow.stop_id});
 
+        if (!activeRoutes[tripId]) {
+          client.query("select departure_time_seconds, arrival_time_seconds, stop_id from gtfs_stop_times where trip_id='" + tripId + "' ORDER BY stop_sequence;", function(err, result) {
+            activeRoutes[tripId] = result.rows; 
+            client.end();
+          })
+        }
+        else {
+          client.end();
+        }
       })
     })
   })
