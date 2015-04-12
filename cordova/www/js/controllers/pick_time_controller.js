@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('teaApp')
-  .controller('PickTimeController', function($scope, $window, Storage){
+  .controller('PickTimeController', function($scope, $window, Storage, RouteApi){
     $scope.times = [];
 
     var convert2british = function (hr, min) {
@@ -31,8 +31,9 @@ angular.module('teaApp')
         if($scope.go && $scope.selectedTime){
             Storage.setRoute('selectedTime', $scope.selectedTime);
             Storage.setRoute('go', $scope.go);
-            console.log(Storage.getRoute('time'));
-            console.log(Storage.getRoute('go'));
+
+  //          console.log(Storage.getRoute('time'));
+  //          console.log(Storage.getRoute('go'));
             $window.location.href = '#/select-pickup';
         }
         else{
