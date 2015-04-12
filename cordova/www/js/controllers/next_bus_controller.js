@@ -2,6 +2,17 @@
 
 angular.module('teaApp')
   .controller('NextBusController', function($scope, $window, $timeout){
+    var onSuccess = function(p) {
+        alert(p.timestamp);
+        $scope.now = p.timestamp;
+    };
+
+    var onError = function(err) {
+        console.log('code '+err.code+'\n'+'message: '+err.message+'\n');
+    };
+
+    navigator.geolocation.getCurrentPosition(onSuccess, onError,{timeout:5000,enableHighAccuracy:true});
+
     $scope.seconds = "0" + 4;
     $scope.mins = "0" + 1;
     $scope.hours = 21;
